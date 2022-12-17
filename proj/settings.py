@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,9 +41,13 @@ INSTALLED_APPS = [
 
 	'myApp.apps.MyappConfig',
 	'users.apps.UsersConfig',
+
 	"rest_framework",
 	"rest_framework_simplejwt",
-    "rest_framework.authtoken"
+    "rest_framework.authtoken",
+
+	'django_seed',
+	'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -53,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'proj.urls'
@@ -114,9 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-pe'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Lima'
 
 USE_I18N = True
 
@@ -134,3 +140,29 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.User"
+
+
+REST_FRAMEWORK = {
+	"DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication"
+    ],
+	"DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 5,
+
+	"DEFAULT_THROTTLE_CLASSES": [
+		#para la creaci´ón
+		'rest_framework.throttling.ScopedRateThrottle'
+    ],
+	#peticiones al día por usuario
+	"DEFAULT_THROTTLE_RATES": {
+
+
+		'create': '1/minute'
+	}
+}
+
+#TIEMPIO DE VIDA DEL TOKEN
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}

@@ -20,7 +20,12 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    #path("", index),
-    #path("api", include('todos.urls')),
     path("api/users/", include('users.urls')),
+	path("", include('myApp.urls')),
 ]
+
+# http://127.0.0.1:8000/api/users/
+# http://127.0.0.1:8000/api/users/login/
+# http://127.0.0.1:8000/api/users/signup/
+
+#http://127.0.0.1:8000/pagos/
