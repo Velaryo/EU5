@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
 	'myApp.apps.MyappConfig',
 	'users.apps.UsersConfig',
+	'pagos_v2.apps.PagosV2Config',
 
 	"rest_framework",
 	"rest_framework_simplejwt",
