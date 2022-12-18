@@ -1,18 +1,23 @@
 from .models import Pago
 from .serializers import PagoSerializer
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 #from rest_framework.permissions import IsAuthenticated
 from rest_framework import permissions
-
-class IsAuthenticated(permissions.BasePermission):
-    def has_permission(self, request, view):
-    	return request.user and request.user.is_authenticated
+from rest_framework import mixins
 
 
-class PagoViewSet(ModelViewSet):
+# class IsAuthenticated(permissions.BasePermission):
+#     def has_permission(self, request, view):
+#     	return request.user and request.user.is_authenticated
+
+class PagoCreateRetrieveUpdateListViewSet(mixins.CreateModelMixin,\
+	mixins.RetrieveModelMixin, mixins.UpdateModelMixin, \
+		mixins.ListModelMixin, GenericViewSet):
+	
+	#actions = ['list', 'create', 'retrieve', 'update', 'partial_update']
+
 	#permission_classes = [IsAuthenticated]
-	actions = ['list', 'create', 'retrieve', 'update', 'partial_update']
 	queryset = Pago.objects.all().order_by('-id')
 	serializer_class = PagoSerializer
 
@@ -24,3 +29,4 @@ class PagoViewSet(ModelViewSet):
 			
 			self.throttle_scope = "create"
 		return super().get_throttles()
+
