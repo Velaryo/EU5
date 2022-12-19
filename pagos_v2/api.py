@@ -3,9 +3,6 @@ from .serializers import ServiceSerializer, PaymentUserSerializer, ExpiredPaymen
 from rest_framework.viewsets import ModelViewSet, GenericViewSet, ReadOnlyModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
-from rest_framework import permissions
-from rest_framework import mixins
-from django.utils import timezone
 from django.db.models import F
 import random
 from rest_framework import filters

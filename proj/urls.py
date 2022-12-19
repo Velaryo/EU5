@@ -23,6 +23,7 @@ urlpatterns = [
     path(r"api/users/", include('users.urls'), name='users'),
 	path(r"api/v1/", include('myApp.urls'), name='myApp'),
 	path(r"api/v2/", include('pagos_v2.urls'), name='pagos_v2')
+	#path(r"", include('pagos_v2.urls'), name='pagos_v2_INDEX')
 ]
 
 # http://127.0.0.1:8000/api/users/

@@ -33,7 +33,7 @@ class Payment_user(models.Model):
 		return f"{texto} - Vigente"
 
 class Expired_payment(models.Model):
-	pay_user = models.ForeignKey(Payment_user, on_delete=models.CASCADE, related_name='expired_payments')
+	pay_user = models.OneToOneField(Payment_user, on_delete=models.CASCADE, related_name='expired_payments')
 	penalty_fee_amount = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(50)], default=0.0)
 	
 	class Meta:
