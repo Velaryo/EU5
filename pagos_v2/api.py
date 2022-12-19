@@ -70,7 +70,7 @@ class ExpiredPaymentViewSet(ModelViewSet):
 		if self.action in self.USER_ACTIONS:
 			permissions_classes = [IsAuthenticated]
 		elif self.action in self.ADMIN_ACTIONS:
-			permissions_classes = [AllowAny]
+			permissions_classes = [IsAdminUser]
 		
 		return [permission() for permission in permissions_classes]
 	
