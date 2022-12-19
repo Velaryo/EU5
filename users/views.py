@@ -55,4 +55,4 @@ class LoginView(APIView):
 
 class GetUsers(viewsets.ReadOnlyModelViewSet):
     serializer_class = GetUserSerializer
-    queryset = User.objects.all()
+    queryset = User.objects.all().order_by('id')

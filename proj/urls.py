@@ -15,22 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-#from todos.views import index
+from .views import index
 
 
 urlpatterns = [
+	path("", index, name='index'),
     path(r"admin/", admin.site.urls),
     path(r"api/users/", include('users.urls'), name='users'),
 	path(r"api/v1/", include('myApp.urls'), name='myApp'),
 	path(r"api/v2/", include('pagos_v2.urls'), name='pagos_v2')
-	#path(r"", include('pagos_v2.urls'), name='pagos_v2_INDEX')
 ]
-
-# http://127.0.0.1:8000/api/users/
-# http://127.0.0.1:8000/api/users/login/
-# http://127.0.0.1:8000/api/users/signup/
-
-# http://127.0.0.1:8000/api/v1/pagos/
-
-# http://127.0.0.1:8000/api/v2/services/
-# http://127.0.0.1:8000/api/v2/payments/
