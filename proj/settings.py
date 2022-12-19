@@ -148,22 +148,27 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication"
     ],
 	"DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 5,
+    "PAGE_SIZE": 100,
 
 	"DEFAULT_THROTTLE_CLASSES": [
-		#para la creaci´ón
+		# general
+		'rest_framework.throttling.UserRateThrottle',
+		#para la creaci´ón | pagos - SCOPE
 		'rest_framework.throttling.ScopedRateThrottle'
     ],
 	#peticiones al día por usuario
 	"DEFAULT_THROTTLE_RATES": {
-
-
-		'create': '1/minute'
-	}
+		'user': '2000/day',
+		'create': '1/minute',
+		'pagos': '1000/day'
+	},
+	"DEFAULT_FILTER_BACKENDS": [
+		'django_filters.rest_framework.DjangoFilterBackend'
+	]
 }
 
 #TIEMPIO DE VIDA DEL TOKEN
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
 }
