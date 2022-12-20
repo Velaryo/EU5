@@ -153,7 +153,7 @@ STATIC_URL = 'static/'
 #* railway
 CSRF_TRUSTED_ORIGINS = ['https://eu5-huarca-gamero-alvaro.up.railway.app']
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 #* FIN railway
 
