@@ -29,7 +29,7 @@ class PaymentUserViewSet(ModelViewSet):
 	queryset = Payment_user.objects.all().order_by('-id')
 	serializer_class = PaymentUserSerializer
 	filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-	filterset_fields = ['paymentDate', 'expirationDate']
+	filterset_fields = ['paymentDate', 'expirationDate', 'user']
 	search_fields = ['paymentDate', 'expirationDate']
 	throttle_scope = 'pagos'
 
@@ -47,7 +47,7 @@ class PaymentUserViewSet(ModelViewSet):
 				obj.penalty_fee_amount = random.randint(10,50)
 				obj.save()
 	
-	def get_permissions(self):
+	def get_permissions2(self):
 		permissions_classes = []
 		if self.action in self.USER_ACTIONS:
 			permissions_classes = [IsAuthenticated]
@@ -60,12 +60,15 @@ class ExpiredPaymentViewSet(ModelViewSet):
 	queryset = Expired_payment.objects.all().order_by('-id')
 	serializer_class = ExpiredPaymentSerializer
 	throttle_classes = [UserRateThrottle]
+
+	filter_backends = [DjangoFilterBackend]
+	filterset_fields = ['pay_user']
 	
 
 	ADMIN_ACTIONS = ['list', 'create', 'retrieve', 'update', 'partial_update', 'destroy']
 	USER_ACTIONS = ['list', 'retrieve', 'create']
 
-	def get_permissions(self):
+	def get_permissions2(self):
 		permissions_classes = []
 		if self.action in self.USER_ACTIONS:
 			permissions_classes = [IsAuthenticated]

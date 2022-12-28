@@ -28,6 +28,10 @@ SECRET_KEY = 'django-insecure-@87&qc9gbl89n3-7e(-dqbsc1cm26xkn$jk16$-d3!by4f)mp6
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CORS_ALLOW_ALL_ORIGINS = True #*EU7
+#CORS_ALLOWED = ['http://127.0.0.1:5500']
+#CORD_ORIGIN_WHITELIST =['http://127.0.0.1:5500']
+
 
 
 
@@ -51,7 +55,9 @@ INSTALLED_APPS = [
 
 	'django_seed',
 	'django_filters',
-	'drf_yasg'
+	'drf_yasg',
+
+    'corsheaders' #*EU7
 ]
 
 MIDDLEWARE = [
@@ -59,12 +65,15 @@ MIDDLEWARE = [
 	#*railway
 	'whitenoise.middleware.WhiteNoiseMiddleware',
 	#*FIN railway
+    'corsheaders.middleware.CorsMiddleware', #*EU7
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+
+    
 
 ]
 
@@ -89,15 +98,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'proj.wsgi.application'
 
 
-
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': 'railway',
 	'USER': 'root',
-	'PASSWORD': 'xUVgDO0k8FkPAWCsLs0G',
-	'HOST': 'containers-us-west-148.railway.app',
-	'PORT': '6450'
+	'PASSWORD': 'Q9oF73TrMbmXStWszm09',
+	'HOST': 'containers-us-west-76.railway.app',
+	'PORT': '7528'
 
     }
 }
@@ -174,7 +182,7 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication"
     ],
 	"DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 100,
+    "PAGE_SIZE": 5,
 
 	"DEFAULT_THROTTLE_CLASSES": [
 		# general

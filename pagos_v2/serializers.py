@@ -15,6 +15,7 @@ class PaymentUserSerializer(ModelSerializer):
 		read_only_fields = ['id']
 
 class ExpiredPaymentSerializer(ModelSerializer):
+
 	class Meta:
 		model = Expired_payment
 		fields = ['id', 'pay_user', 'penalty_fee_amount']

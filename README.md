@@ -1,3 +1,7 @@
+## NOTA:
+El proyeco de la Unidad 5 ha sido modificado el 28 de diciembre, asumiendo que hasta el día de la fecha ya ha sido evaluado.
+#
+#
 # Examen proyecto de la UNIDAD #05
 
 ## ¿Qué es Django Rest Framework?
