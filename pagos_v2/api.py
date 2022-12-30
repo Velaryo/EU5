@@ -47,7 +47,7 @@ class PaymentUserViewSet(ModelViewSet):
 				obj.penalty_fee_amount = random.randint(10,50)
 				obj.save()
 	
-	def get_permissions2(self):
+	def get_permissions(self):
 		permissions_classes = []
 		if self.action in self.USER_ACTIONS:
 			permissions_classes = [IsAuthenticated]
@@ -68,7 +68,7 @@ class ExpiredPaymentViewSet(ModelViewSet):
 	ADMIN_ACTIONS = ['list', 'create', 'retrieve', 'update', 'partial_update', 'destroy']
 	USER_ACTIONS = ['list', 'retrieve', 'create']
 
-	def get_permissions2(self):
+	def get_permissions(self):
 		permissions_classes = []
 		if self.action in self.USER_ACTIONS:
 			permissions_classes = [IsAuthenticated]
